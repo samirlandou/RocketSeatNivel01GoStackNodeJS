@@ -1,9 +1,27 @@
 const { request, response } = require('express');
 const express = require('express'); //importar a biblioteca express
+const cors = require('cors');
 const { v4: uuidv4} = require('uuid'); // importar o uuid (Universal Unique Id)
 const app = express(); //Isso cria a aplicação
 
-app.use(express.json()) //o "use" serve para adicionar alguns tipo de funções
+
+/**
+ * Permite que qualquer front end tenha acesso ao backend(API).
+ * pode ser usado assim no desenvolvimento pelo enquanto. Mas depois usar aquele
+ * de baixo para definir qual url vai ser permitido para ler os dados do API.
+ * 
+ */
+//app.use(cors());
+
+/* Aqui especificar a origen do front*/
+app.use(cors({
+    origin: 'http://localhost:8080'
+}));
+
+
+
+//Usa o express
+app.use(express.json()); //o "use" serve para adicionar alguns tipo de funções
 
 
 
